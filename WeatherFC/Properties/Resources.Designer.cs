@@ -93,9 +93,39 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lightcloud_anim {
+            get {
+                object obj = ResourceManager.GetObject("lightcloud_anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rain_anim {
+            get {
+                object obj = ResourceManager.GetObject("rain_anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap storm_anim {
             get {
                 object obj = ResourceManager.GetObject("storm_anim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sunny_anim {
+            get {
+                object obj = ResourceManager.GetObject("sunny_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
