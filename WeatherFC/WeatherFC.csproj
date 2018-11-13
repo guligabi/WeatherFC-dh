@@ -66,6 +66,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HelperClasses\DarkSkyWrapper.cs" />
     <Compile Include="HelperClasses\ImageBehaviour.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
