@@ -4,9 +4,69 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherFC"
+        xmlns:ex="clr-namespace:WeatherFC.HelperClasses"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF3A3A3A" MinWidth="700" MinHeight="500" ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image_weather_anim" Grid.Column="0" Grid.Row="1" ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/rain_anim.gif" Stretch="Fill" Margin="3,0,3,3"/>
+        <Rectangle Fill="#4C000000" HorizontalAlignment="Left" Height="517" Margin="10,26,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="280" StrokeThickness="0"/>
+        <Label x:Name="label_CurrentCity" Content="City" HorizontalAlignment="Left" Margin="93,10,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="48" Foreground="White" Height="74" Width="91"/>
+        <Image x:Name="img_lang_uk" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="872,112,0,0" VerticalAlignment="Top" Width="40" Source="/WeatherFC;component/Resources/uk_flag.png"/>
+        <Image x:Name="img_lang_hu" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="932,112,0,0" VerticalAlignment="Top" Width="40" Source="/WeatherFC;component/Resources/hu_flag.png"/>
+        <Image x:Name="image_Logo" Grid.Column="0" HorizontalAlignment="Left" Height="100" Margin="26,21,0,0" VerticalAlignment="Top" Width="225" Source="pack://siteoforigin:,,,/Resources/weather_fc_logo.png"/>
+        <Line X1="300" Y1="0" X2="300" Y2="7500" Stroke="Black" StrokeThickness="4" Margin="0,0,0,-3" Grid.RowSpan="2"/>
+        <Line X1="0" Y1="150" X2="1300" Y2="150" Stroke="Black" StrokeThickness="4" Grid.ColumnSpan="2" Margin="0,0,-5,0"/>
+        <Image x:Name="image1" Grid.Column="1" Margin="962,-29,-30,121" RenderTransformOrigin="0.5,0.5" ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/exit.png" Height="58" VerticalAlignment="Bottom" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.237"/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform X="0.091" Y="0.091"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Label x:Name="label_CurrentTemp" Content="30 °C" HorizontalAlignment="Left" Margin="79,84,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="48"/>
+        <Label x:Name="label_SelectCity" Content="Select city to view:" Grid.Column="1" HorizontalAlignment="Left" Margin="24,68,0,15" Width="323" Foreground="White" FontSize="36"/>
+        <ComboBox x:Name="comboBox_SelectCity" Grid.Column="1" HorizontalAlignment="Left" Margin="347,73,0,0" VerticalAlignment="Top" Width="205" Height="48"/>
+        <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="572" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="972">
+            <ListBox x:Name="listBox" Height="572" Width="972" Background="{x:Null}" ItemTemplate="{DynamicResource ForecastTemplate}"/>
+        </Canvas>
+        <Grid HorizontalAlignment="Left" Height="398" Margin="10,184,0,0" Grid.Row="1" VerticalAlignment="Top" Width="280">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label_CurrentWindSpeed" Content="Wind speed:" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Height="46" Width="136" Margin="0,10,0,0"/>
+            <Label x:Name="label_CurrentAppTemp" Content="Apparent &#xD;&#xA;temperature:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="64" Width="136"/>
+            <Label x:Name="label_CurrentAtmPressure" Content="Atmospheric&#xD;&#xA;pressure:" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="White" Height="66" Width="136"/>
+            <Label x:Name="label_CurrentHumidity" Content="Humidity:" FontSize="20" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Foreground="White" Height="44" Width="136" Margin="0,13,0,0"/>
+            <Label x:Name="label_CurrentUV" Content="UV Index:" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Foreground="White" Height="44" Width="136" Margin="0,10,0,0"/>
+            <Label x:Name="label_CurrVal_AppTemp" Content="33 °C" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="90" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <Label x:Name="label_CurrVal_Wind" Content="32 km/h" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="90" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="1"/>
+            <Label x:Name="label_CurrVal_AtmPressure" Content="1028.78" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="90" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="2"/>
+            <Label x:Name="label_CurrVal_Humidity" Content="0.73" Grid.Column="1" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="46" Width="90" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="3"/>
+            <Label x:Name="label_CurrVal_UV" Content="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Height="46" Width="90" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="4"/>
+        </Grid>
+        <Label x:Name="label_Year" Content="2018" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="74" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
+        <Label x:Name="label_Month" Content="NOVEMBER" Grid.Column="1" HorizontalAlignment="Left" Margin="103,10,0,0" VerticalAlignment="Top" Width="162" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
+        <Label x:Name="label_Month_Copy" Content="21" Grid.Column="1" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top" Width="162" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
         
     </Grid>
 </Window>

@@ -24,7 +24,16 @@ namespace WeatherFC
     {
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                this.DataContext = ViewModels.MainWindowVM.Get();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                Application.Current.Shutdown();
+            }      
         }
     }
 }
