@@ -24,7 +24,7 @@
         <Image x:Name="image_Logo" Grid.Column="0" HorizontalAlignment="Left" Height="100" Margin="26,21,0,0" VerticalAlignment="Top" Width="225" Source="pack://siteoforigin:,,,/Resources/weather_fc_logo.png"/>
         <Line X1="300" Y1="0" X2="300" Y2="7500" Stroke="Black" StrokeThickness="4" Margin="0,0,0,-3" Grid.RowSpan="2"/>
         <Line X1="0" Y1="150" X2="1300" Y2="150" Stroke="Black" StrokeThickness="4" Grid.ColumnSpan="2" Margin="0,0,-5,0"/>
-        <Image x:Name="image1" Grid.Column="1" Margin="962,-29,-30,121" RenderTransformOrigin="0.5,0.5" ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/exit.png" Height="58" VerticalAlignment="Bottom" >
+        <Image x:Name="image_Quit" Grid.Column="1" Margin="952,-50,-47,103" RenderTransformOrigin="0.5,0.5" ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/exit.png" Height="97" VerticalAlignment="Bottom" >
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -33,6 +33,9 @@
                     <TranslateTransform X="0.091" Y="0.091"/>
                 </TransformGroup>
             </Image.RenderTransform>
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding QuitApplicationCommand, Mode=OneTime}" />
+            </Image.InputBindings>
         </Image>
         <Label x:Name="label_CurrentTemp" Content="30 °C" HorizontalAlignment="Left" Margin="79,84,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="48"/>
         <Label x:Name="label_SelectCity" Content="Select city to view:" Grid.Column="1" HorizontalAlignment="Left" Margin="24,68,0,15" Width="323" Foreground="White" FontSize="36"/>
@@ -67,6 +70,6 @@
         <Label x:Name="label_Year" Content="2018" Grid.Column="1" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="74" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
         <Label x:Name="label_Month" Content="NOVEMBER" Grid.Column="1" HorizontalAlignment="Left" Margin="103,10,0,0" VerticalAlignment="Top" Width="162" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
         <Label x:Name="label_Month_Copy" Content="21" Grid.Column="1" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top" Width="162" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold"/>
-        
+
     </Grid>
 </Window>

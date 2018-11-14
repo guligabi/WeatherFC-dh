@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
+using WeatherFC.Models;
 
 namespace WeatherFC.HelperClasses
 {
@@ -25,19 +26,19 @@ namespace WeatherFC.HelperClasses
             }
         }
 
-        public static string BuildRequestUrl(string key, string location, string language,string units)
+        public static string BuildRequestUrl(string key, string location, string language, string units)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("https://api.darksky.net/forecast/");
             sb.Append(key);
             sb.Append("/");
             sb.Append(location);
-            
-            if(language != null)
+
+            if (language != null)
             {
                 sb.Append("?lang=" + language);
             }
-            if(units != null)
+            if (units != null)
             {
                 if (language == null)
                 { sb.Append("?units=" + units); }
@@ -48,7 +49,7 @@ namespace WeatherFC.HelperClasses
             return sb.ToString();
         }
 
-        public static Dictionary<string,string> GetCities(string path)
+        public static Dictionary<string, string> GetCities(string path)
         {
             if (!File.Exists(path))
             { throw new FileNotFoundException("The file could not be found at the specified location! City locations retrieval failed!"); }
@@ -60,10 +61,10 @@ namespace WeatherFC.HelperClasses
                                                  a => (string)a.Attribute("location"));
                 return dictionary;
             }
-       
+
         }
 
-        public static string RequestDataFromApi(string city, string language, string units)
+        public static WeatherData RequestDataFromApi(string city, string language, string units)
         {
             string uri = "";
             try
@@ -73,13 +74,15 @@ namespace WeatherFC.HelperClasses
                 string location = cities[city];
                 uri = BuildRequestUrl(key, location, language, units);
             }
-            catch(FileNotFoundException e)
+            catch (FileNotFoundException e)
             {
                 MessageBox.Show(e.Message);
                 return null;
             }
-           
+
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+
+            string json;
 
             try
             {
@@ -87,28 +90,38 @@ namespace WeatherFC.HelperClasses
                 using (Stream stream = response.GetResponseStream())
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                    return reader.ReadToEnd();
+                    json = reader.ReadToEnd();
                 }
             }
-            catch(WebException we)
+            catch (WebException we)
             {
                 MessageBox.Show("The request has timed out. Check your connection or try again later.\nException details: " + we.Message);
                 return null;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show("An unexpected error has occured.\nException details: " + e.Message);
                 return null;
             }
+
+            var data = JsonConvert.DeserializeObject<WeatherData>(json);
+            return data;
         }
 
         public static object DeserializeJson(string json)
         {
-            //TODO
-            var obj = JsonConvert.DeserializeObject(json);
+            try
+            {
+                var obj = JsonConvert.DeserializeObject<WeatherData>(json);
+                return obj;
+            }
+            catch (JsonSerializationException e)
+            {
+                MessageBox.Show("Data received from server appears to be corrupt. Exception details: " + e.Message);
+                return null;
+            }
 
-            return obj;
-        
+
         }
     }
 }
