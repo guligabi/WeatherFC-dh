@@ -1,22 +1,144 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WeatherFC.Models
 {
-    public class WeatherData
+    public class WeatherData : INotifyPropertyChanged
     {
-        public double latitude { get; set; }
-        public double longitude { get; set; }
-        public string timezone { get; set; }
-        public Currently currently { get; set; }
-        public Minutely minutely { get; set; }
-        public Hourly hourly { get; set; }
-        public Daily daily { get; set; }
-        public Flags flags { get; set; }
-        public int offset { get; set; }
+        double _latitude;
+        double _longitude;
+        string _timezone;
+        Currently _currently;
+        Minutely _minutely;
+        Hourly _hourly;
+        Daily _daily;
+        Flags _flags;
+        int _offset;
+
+        public double latitude
+        {
+            get
+            {
+                return _latitude;
+            }
+            set
+            {
+                _latitude = value;
+                OnPropertyChange("latitude");
+
+            }
+        }
+        public double longitude
+        {
+            get
+            {
+                return _longitude;
+            }
+            set
+            {
+                _longitude = value;
+                OnPropertyChange("longitude");
+            }
+        }
+        public string timezone
+        {
+            get
+            {
+                return _timezone;
+            }
+            set
+            {
+                _timezone = value;
+                OnPropertyChange("timezone");
+            }
+        }
+        public Currently currently
+        {
+            get
+            {
+                return _currently;
+            }
+            set
+            {
+                _currently = value;
+                OnPropertyChange("currently");
+            }
+        }
+        public Minutely minutely
+        {
+            get
+            {
+                return _minutely;
+            }
+            set
+            {
+                _minutely = value;
+                OnPropertyChange("minutely");
+            }
+        }
+        public Hourly hourly
+        {
+            get
+            {
+                return _hourly;
+            }
+            set
+            {
+                _hourly = value;
+                OnPropertyChange("hourly");
+            }
+        }
+        public Daily daily
+        {
+            get
+            {
+                return _daily;
+            }
+            set
+            {
+                _daily = value;
+                OnPropertyChange("daily");
+            }
+        }
+        public Flags flags
+        {
+            get
+            {
+                return _flags;
+            }
+            set
+            {
+                _flags = value;
+                OnPropertyChange("flags");
+            }
+        }
+        public int offset
+        {
+            get
+            {
+                return _offset;
+            }
+            set
+            {
+                _offset = value;
+                OnPropertyChange("offset");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChange([CallerMemberName] string name = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 
     public class Currently

@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WeatherFC"
+             xmlns:ex="clr-namespace:WeatherFC.HelperClasses"
              StartupUri="../Views/MainWindow.xaml">
     <Application.Resources>
 
@@ -9,9 +10,9 @@
 
             <Grid Height="570" Width="170">
                 <Canvas x:Name="canvas_FC" HorizontalAlignment="Left" Height="570" VerticalAlignment="Top" Width="170">
-                    <Image x:Name="image_FCAnim" Height="570" Width="170" Stretch="Fill"/>
+                    <Image x:Name="image_FCAnim" Height="570" Width="170" Stretch="Fill"  ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/storm_anim.gif"/>
                     <Label x:Name="label_FCDate" Content="22" Canvas.Left="10" Canvas.Top="10" Height="59" Width="150" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                    <Label x:Name="label_FCTemp" Content="30 C°" Canvas.Left="10" Canvas.Top="74" Width="150" Height="65" Foreground="White" FontSize="36" HorizontalContentAlignment="Center"/>
+                    <Label x:Name="label_FCTemp" Content="{Binding Path=Temperature}" Canvas.Left="10" Canvas.Top="74" Width="150" Height="65" Foreground="White" FontSize="36" HorizontalContentAlignment="Center"/>
                     <Label x:Name="label_FCAppTemp" Content="Apparent temp:" Canvas.Left="10" Canvas.Top="144" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18"/>
                     <Label x:Name="label_FCHumidity" Content="Humidity:" Canvas.Left="10" Canvas.Top="225" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18"/>
                     <Label x:Name="label_FCWind" Content="Wind speed:" Canvas.Left="10" Canvas.Top="308" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18"/>
@@ -19,11 +20,11 @@
                     <Label x:Name="label_FCAtmosPressure" Content="Atmospheric Prs:" Canvas.Left="10" Canvas.Top="479" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18"/>
                     <Line X1="0" Y1="150" X2="170" Y2="150" Stroke="Black" StrokeThickness="2" Grid.ColumnSpan="2" Margin="0" Canvas.Top="-6"/>
                 </Canvas>
-                <Label x:Name="label_Val_AppTemp" Content="33 C°" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
-                <Label x:Name="label_Val_Humidity" Content="0.73" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
-                <Label x:Name="label_Val_Wind" Content="4.83 km/h" HorizontalAlignment="Left" Margin="10,348,0,0" VerticalAlignment="Top" Width="150" Height="44" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
-                <Label x:Name="label_Val_UV" Content="0" HorizontalAlignment="Left" Margin="10,438,0,0" VerticalAlignment="Top" Width="150" Height="44" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
-                <Label x:Name="label_Val_Pressure" Content="1026.78" HorizontalAlignment="Left" Margin="10,515,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
+                <Label x:Name="label_Val_AppTemp" Content="{Binding Path=ApparentTemperature}"  HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
+                <Label x:Name="label_Val_Humidity" Content="{Binding Path=Humidity}" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
+                <Label x:Name="label_Val_Wind" Content="{Binding Path=WindSpeed}" HorizontalAlignment="Left" Margin="10,348,0,0" VerticalAlignment="Top" Width="150" Height="44" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
+                <Label x:Name="label_Val_UV" Content="{Binding Path=UvIndex}" HorizontalAlignment="Left" Margin="10,438,0,0" VerticalAlignment="Top" Width="150" Height="44" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
+                <Label x:Name="label_Val_Pressure" Content="{Binding Path=Pressure}" HorizontalAlignment="Left" Margin="10,515,0,0" VerticalAlignment="Top" Width="150" Height="45" Background="{x:Null}" Foreground="#FF00F3FF" HorizontalContentAlignment="Center" FontSize="20"/>
             </Grid>
         </DataTemplate>
 
