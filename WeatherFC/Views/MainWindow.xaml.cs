@@ -28,7 +28,6 @@ namespace WeatherFC
             {
                 InitializeComponent();
                 this.DataContext = ViewModels.MainWindowVM.Get();
-                HelperClasses.DarkSkyWrapper.RequestDataFromApi("Budapest", "hu", "ca");
             }
             catch (Exception e)
             {
