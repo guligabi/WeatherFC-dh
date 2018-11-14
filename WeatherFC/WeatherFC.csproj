@@ -66,8 +66,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HelperClasses\DarkSkyWrapper.cs" />
     <Compile Include="HelperClasses\ImageBehaviour.cs" />
     <Compile Include="HelperClasses\RelayCommand.cs" />
+    <Compile Include="Models\WeatherData.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -106,9 +108,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\hu_flag.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
