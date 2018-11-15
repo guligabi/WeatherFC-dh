@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WeatherFC.HelperClasses;
 using WeatherFC.Models;
+using System.Windows.Interactivity;
 
 namespace WeatherFC.ViewModels
 {
@@ -20,6 +21,11 @@ namespace WeatherFC.ViewModels
         string errorMsg;
         ObservableCollection<ForecastData> forecast;
         ObservableCollection<string> cityList;
+
+        DateTime currentDate;
+        string currentDay;
+        string currentMonth;
+        string currentYear;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -37,6 +43,10 @@ namespace WeatherFC.ViewModels
         public ObservableCollection<ForecastData> Forecast { get { return forecast; } set { forecast = value; OnPropertyChange("Forecast"); } }
         public ObservableCollection<string> CityList { get { return cityList; } set { cityList = value; OnPropertyChange("CityList"); } }
         public string ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChange("ErrorMsg"); } }
+        public DateTime CurrentDate { get { return currentDate; } set { currentDate = value; OnPropertyChange("CurrentDate"); MapDateToProperties(); } }
+        public string CurrentDay { get { return currentDay; } set { currentDay = value; OnPropertyChange("CurrentDay"); } }
+        public string CurrentMonth { get { return currentMonth; } set { currentMonth = value; OnPropertyChange("CurrentMonth"); } }
+        public string CurrentYear { get { return currentYear; } set { currentYear = value; OnPropertyChange("CurrentYear"); } }
 
         static MainWindowVM entity;
         public static MainWindowVM Get()
@@ -57,9 +67,17 @@ namespace WeatherFC.ViewModels
 
             Forecast = new ObservableCollection<ForecastData>();
             CityList = new ObservableCollection<string>();
+            CurrentDate = DateTime.Today;
             CurrentCity = "Budapest";
             currentLanguage = "en";
             UpdateCities(null);
+        }
+
+        void MapDateToProperties()
+        {
+            CurrentDay = CurrentDate.ToString("dd");
+            CurrentMonth = CurrentDate.ToString("MMMM");
+            CurrentYear = CurrentDate.ToString("yyyy");
         }
 
         void UpdateCities(object parameter)
@@ -80,8 +98,10 @@ namespace WeatherFC.ViewModels
             {
                 ActualData = data;
                 Forecast.Clear();
+                int dateOffset = 0;
                 foreach (Datum3 d in actualData.daily.data)
                 {
+                    dateOffset++;
                     Forecast.Add(new ForecastData
                     {
                         Temperature = d.temperatureHigh,
@@ -90,7 +110,9 @@ namespace WeatherFC.ViewModels
                         Humidity = d.humidity,
                         Pressure = d.pressure,
                         WindSpeed = d.windSpeed,
-                        UvIndex = d.uvIndex
+                        UvIndex = d.uvIndex,
+                        Date = DateTime.Today.AddDays(dateOffset).Day.ToString(),
+                        Month = DateTime.Today.AddDays(dateOffset).ToString("MMMM")
                     });
                 }
             }

@@ -8,14 +8,6 @@ namespace WeatherFC.Models
 {
     class ForecastData
     {
-        public string icon;
-        public double temperature;
-        public double apparentTemperature;
-        public double humidity;
-        public double pressure;
-        public double windSpeed;
-        public int uvIndex;
-
         public string Icon { get; set; }
         public double Temperature { get; set; }
         public double ApparentTemperature { get; set; }
@@ -23,5 +15,7 @@ namespace WeatherFC.Models
         public double Pressure { get; set; }
         public double WindSpeed { get; set; }
         public int UvIndex { get; set; }
+        public string Date { get; set; }
+        public string Month { get; set; }
     }
 }
