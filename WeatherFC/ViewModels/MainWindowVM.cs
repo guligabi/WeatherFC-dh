@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,7 +17,9 @@ namespace WeatherFC.ViewModels
         WeatherData actualData;
         string currentCity;
         string currentLanguage;
-
+        string errorMsg;
+        ObservableCollection<ForecastData> forecast;
+        ObservableCollection<string> cityList;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,9 +31,12 @@ namespace WeatherFC.ViewModels
             }
         }
 
-        public string CurrentCity { get { return currentCity; } set { currentCity = value; OnPropertyChange("CurrentCity"); } }
+        public string CurrentCity { get { return currentCity; } set { currentCity = value; OnPropertyChange("CurrentCity"); GetWeatherData(null); } }
         public string CurrentLanguage { get { return currentLanguage; } set { currentLanguage = value; OnPropertyChange("CurrentLanguage"); } }
-        public WeatherData ActualData { get { return actualData; } set { actualData = value; OnPropertyChange("ActualData"); } }
+        public WeatherData ActualData { get { return actualData; } set { actualData = value; OnPropertyChange("ActualData"); ErrorMsg = ""; } }
+        public ObservableCollection<ForecastData> Forecast { get { return forecast; } set { forecast = value; OnPropertyChange("Forecast"); } }
+        public ObservableCollection<string> CityList { get { return cityList; } set { cityList = value; OnPropertyChange("CityList"); } }
+        public string ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChange("ErrorMsg"); } }
 
         static MainWindowVM entity;
         public static MainWindowVM Get()
@@ -41,19 +47,55 @@ namespace WeatherFC.ViewModels
 
         public RelayCommand QuitApplicationCommand { get; set; }
         public RelayCommand ChangeCityCommand { get; set; }
+        public RelayCommand ChangeLanguageCommand { get; set; }
+
 
         public MainWindowVM()
         {
             QuitApplicationCommand = new RelayCommand(QuitApplication);
-            ChangeCityCommand = new RelayCommand(ChangeCity);
+            ChangeLanguageCommand = new RelayCommand(ChangeLanguage);
 
-            CurrentCity = "Placeholder";
+            Forecast = new ObservableCollection<ForecastData>();
+            CityList = new ObservableCollection<string>();
+            CurrentCity = "Budapest";
             currentLanguage = "en";
+            UpdateCities(null);
+        }
+
+        void UpdateCities(object parameter)
+        {
+            var cities = DarkSkyWrapper.GetCities("cities.xml");
+
+            foreach (KeyValuePair<string, string> c in cities)
+            {
+                CityList.Add(c.Key);
+            }
+
         }
 
         void GetWeatherData(object parameter)
         {
-            var data = DarkSkyWrapper.RequestDataFromApi(currentCity,)
+            var data = DarkSkyWrapper.RequestDataFromApi(CurrentCity, CurrentLanguage, "ca");
+            if (data != null)
+            {
+                ActualData = data;
+                Forecast.Clear();
+                foreach (Datum3 d in actualData.daily.data)
+                {
+                    Forecast.Add(new ForecastData
+                    {
+                        Temperature = d.temperatureHigh,
+                        Icon = d.icon,
+                        ApparentTemperature = d.apparentTemperatureHigh,
+                        Humidity = d.humidity,
+                        Pressure = d.pressure,
+                        WindSpeed = d.windSpeed,
+                        UvIndex = d.uvIndex
+                    });
+                }
+            }
+            else
+            { ErrorMsg = "Connection to DarkSky services failed."; }
         }
 
         void QuitApplication(object parameter)
@@ -61,9 +103,9 @@ namespace WeatherFC.ViewModels
             Application.Current.Shutdown();
         }
 
-        void ChangeCity (object parameter)
+        void ChangeLanguage(object parameter)
         {
-            CurrentCity = "Munich";
+
         }
     }
 }
