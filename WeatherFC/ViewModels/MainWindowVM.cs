@@ -10,6 +10,8 @@ using System.Windows;
 using WeatherFC.HelperClasses;
 using WeatherFC.Models;
 using System.Windows.Interactivity;
+using System.Globalization;
+using System.Threading;
 
 namespace WeatherFC.ViewModels
 {
@@ -21,6 +23,7 @@ namespace WeatherFC.ViewModels
         string errorMsg;
         ObservableCollection<ForecastData> forecast;
         ObservableCollection<string> cityList;
+        string language;
 
         DateTime currentDate;
         string currentDay;
@@ -47,6 +50,7 @@ namespace WeatherFC.ViewModels
         public string CurrentDay { get { return currentDay; } set { currentDay = value; OnPropertyChange("CurrentDay"); } }
         public string CurrentMonth { get { return currentMonth; } set { currentMonth = value; OnPropertyChange("CurrentMonth"); } }
         public string CurrentYear { get { return currentYear; } set { currentYear = value; OnPropertyChange("CurrentYear"); } }
+        public string Language { get { return language; } set { language = value; OnPropertyChange("Language"); OnPropertyChange("Language"); } }
 
         static MainWindowVM entity;
         public static MainWindowVM Get()
@@ -58,7 +62,6 @@ namespace WeatherFC.ViewModels
         public RelayCommand QuitApplicationCommand { get; set; }
         public RelayCommand ChangeCityCommand { get; set; }
         public RelayCommand ChangeLanguageCommand { get; set; }
-
 
         public MainWindowVM()
         {
@@ -127,7 +130,15 @@ namespace WeatherFC.ViewModels
 
         void ChangeLanguage(object parameter)
         {
+            CultureInfo ci = new CultureInfo(parameter.ToString());
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
 
+            FrameworkContentElement.LanguageProperty.OverrideMetadata(
+              typeof(System.Windows.Documents.TextElement),
+              new FrameworkPropertyMetadata(parameter.ToString())
+            );
+            //Language = parameter.ToString();
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WeatherFC"
         xmlns:conv="clr-namespace:WeatherFC.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:p="clr-namespace:WeatherFC.Properties"
         xmlns:ex="clr-namespace:WeatherFC.HelperClasses"
         xmlns:mod="clr-namespace:WeatherFC.Models"
         mc:Ignorable="d"
@@ -61,8 +62,16 @@
                 </ListBox.ItemsPanel>
             </ListBox>
         </Canvas>
-        <Image x:Name="image_lang_uk" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="875,112,0,0" VerticalAlignment="Top" Width="40" Source="pack://siteoforigin:,,,/Resources/uk_flag.png"/>
-        <Image x:Name="img_lang_hu" Grid.Column="1" Margin="932,112,28,18" Source="pack://siteoforigin:,,,/Resources/hu_flag.png" Stretch="Fill" Width="40" Height="20"/>
+        <Image x:Name="image_lang_uk" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="875,112,0,0" VerticalAlignment="Top" Width="40" Source="pack://siteoforigin:,,,/Resources/uk_flag.png">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ChangeLanguageCommand, Mode=OneTime}" CommandParameter="en-GB"/>
+            </Image.InputBindings>
+        </Image>
+        <Image x:Name="img_lang_hu" Grid.Column="1" Margin="932,112,28,18" Source="pack://siteoforigin:,,,/Resources/hu_flag.png" Stretch="Fill" Width="40" Height="20">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ChangeLanguageCommand, Mode=OneTime}" CommandParameter="hu-HU"/>
+            </Image.InputBindings>
+        </Image>
         <Grid HorizontalAlignment="Left" Height="398" Margin="10,184,0,0" Grid.Row="1" VerticalAlignment="Top" Width="280">
             <Grid.RowDefinitions>
                 <RowDefinition Height="66*"/>
@@ -77,7 +86,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label x:Name="label_CurrentWindSpeed" Content="Wind speed:" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Height="46" Width="119" Margin="0,10,0,0" FontFamily="Arciform Sans"/>
-            <Label x:Name="label_CurrentAppTemp" Content="Apparent &#xD;&#xA;temperature:" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="64" Width="119" FontFamily="/WeatherFC;component/Resources/#Arciform Sans"/>
+            <Label x:Name="label_CurrentAppTemp" Content="{x:Static p:Resources.AppTemp}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="64" Width="119" FontFamily="/WeatherFC;component/Resources/#Arciform Sans"/>
             <Label x:Name="label_CurrentAtmPressure" Content="Atmospheric&#xD;&#xA;pressure:" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="White" Height="66" Width="119" FontFamily="Arciform Sans"/>
             <Label x:Name="label_CurrentHumidity" Content="Humidity:" FontSize="20" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Foreground="White" Height="44" Width="119" Margin="0,13,0,0" FontFamily="Arciform Sans"/>
             <Label x:Name="label_CurrentUV" Content="UV Index:" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Foreground="White" Height="44" Width="119" Margin="0,10,0,0" FontFamily="Arciform Sans"/>
