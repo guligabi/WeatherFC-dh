@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WeatherFC"
              xmlns:ex="clr-namespace:WeatherFC.HelperClasses"
+             xmlns:conv="clr-namespace:WeatherFC.Converters"
              StartupUri="../Views/MainWindow.xaml">
     <Application.Resources>
-
+        <conv:TemperatureConverter x:Key="TemperatureConverter"/>
         <DataTemplate x:Key="ForecastTemplate">
             <Grid Height="570" Width="170">
                 <Canvas x:Name="canvas_FC" HorizontalAlignment="Left" Height="570" VerticalAlignment="Top" Width="170">
                     <Image x:Name="image_FCAnim" Height="570" Width="170" Stretch="Fill"  ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/storm_anim.gif"/>
                     <Label x:Name="label_FCDate" Content="22" Canvas.Left="10" Canvas.Top="10" Height="59" Width="150" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontFamily="Arciform Sans"/>
-                    <Label x:Name="label_FCTemp" Content="{Binding Path=Temperature}" Canvas.Left="10" Canvas.Top="74" Width="150" Height="65" Foreground="White" FontSize="36" HorizontalContentAlignment="Center" FontFamily="Arciform Sans"/>
+                    <Label x:Name="label_FCTemp" Content="{Binding Path=Temperature, Converter={StaticResource TemperatureConverter}}" Canvas.Left="10" Canvas.Top="74" Width="150" Height="65" Foreground="White" FontSize="36" HorizontalContentAlignment="Center" FontFamily="Arciform Sans"/>
                     <Label x:Name="label_FCAppTemp" Content="Apparent temp:" Canvas.Left="10" Canvas.Top="144" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" FontFamily="Arciform Sans"/>
                     <Label x:Name="label_FCHumidity" Content="Humidity:" Canvas.Left="10" Canvas.Top="225" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" FontFamily="Arciform Sans"/>
                     <Label x:Name="label_FCWind" Content="Wind speed:" Canvas.Left="10" Canvas.Top="308" Width="150" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" FontFamily="Arciform Sans"/>
