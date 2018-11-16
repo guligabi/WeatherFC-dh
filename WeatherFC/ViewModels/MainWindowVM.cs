@@ -19,6 +19,8 @@ namespace WeatherFC.ViewModels
 {
     class MainWindowVM : INotifyPropertyChanged
     {
+        #region Fields
+
         WeatherData actualData;
         string currentCity;
         string currentLanguage;
@@ -34,13 +36,11 @@ namespace WeatherFC.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChange([CallerMemberName] string name = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
+        static MainWindowVM entity;
+
+        #endregion
+
+        #region Properties
 
         public string CurrentCity { get { return currentCity; } set { currentCity = value; OnPropertyChange("CurrentCity"); GetWeatherData(null); } }
         public string CurrentLanguage { get { return currentLanguage; } set { currentLanguage = value; OnPropertyChange("CurrentLanguage"); } }
@@ -54,16 +54,19 @@ namespace WeatherFC.ViewModels
         public string CurrentYear { get { return currentYear; } set { currentYear = value; OnPropertyChange("CurrentYear"); } }
         public string Language { get { return language; } set { language = value; OnPropertyChange("Language"); OnPropertyChange("Language"); } }
 
-        static MainWindowVM entity;
+        public RelayCommand QuitApplicationCommand { get; set; }
+        public RelayCommand ChangeCityCommand { get; set; }
+        public RelayCommand ChangeLanguageCommand { get; set; }
+
+        #endregion
+
+        #region Constructors
+
         public static MainWindowVM Get()
         {
             if (entity == null) entity = new MainWindowVM();
             return entity;
         }
-
-        public RelayCommand QuitApplicationCommand { get; set; }
-        public RelayCommand ChangeCityCommand { get; set; }
-        public RelayCommand ChangeLanguageCommand { get; set; }
 
         public MainWindowVM()
         {
@@ -76,6 +79,18 @@ namespace WeatherFC.ViewModels
             CurrentCity = "Budapest";
             currentLanguage = "en";
             UpdateCities(null);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void OnPropertyChange([CallerMemberName] string name = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
 
         void MapDateToProperties()
@@ -143,5 +158,7 @@ namespace WeatherFC.ViewModels
                 MessageBox.Show("You need to restart the application for the changes to take effect.");
             }
         }
+
+        #endregion
     }
 }

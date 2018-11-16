@@ -49,8 +49,6 @@
             </Image.InputBindings>
         </Image>
         <Label x:Name="label_CurrentTemp" Content="{Binding Path=ActualData.currently.temperature, Converter={StaticResource TemperatureConverter}}" HorizontalAlignment="Left" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="48" Height="79" Width="280" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arciform Sans"/>
-        <Label x:Name="label_SelectCity" Content="{x:Static p:Resources.SelectCity}" Grid.Column="1" HorizontalAlignment="Left" Margin="24,68,0,15" Width="323" Foreground="White" FontSize="36" FontFamily="Arciform Sans"/>
-        <ComboBox x:Name="comboBox_SelectCity" Grid.Column="1" HorizontalAlignment="Left" Margin="327,73,0,0" VerticalAlignment="Top" Width="205" Height="48"  Style="{DynamicResource ComboBoxFlatStyle}" ItemsSource="{Binding Path=CityList}" SelectedValue="{Binding Path=CurrentCity}"/>
         <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="600" Grid.Row="1" VerticalAlignment="Top" Width="1000">
             <ListBox x:Name="listBox" Height="600" Width="1000" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemTemplate="{DynamicResource ForecastTemplate}" ItemsSource="{Binding Path=Forecast}" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
                 <ListBox.ItemsPanel>
@@ -100,6 +98,10 @@
             <Label x:Name="label_Year" Content="{Binding CurrentYear}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
             <Label x:Name="label_Month" Content="{Binding CurrentMonth}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
             <Label x:Name="label_Day" Content="{Binding CurrentDay}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1" HorizontalAlignment="Left" Height="72" Margin="14,68,0,0" VerticalAlignment="Top" Width="528">
+            <Label x:Name="label_SelectCity" Content="{x:Static p:Resources.SelectCity}" HorizontalAlignment="Center" Foreground="White" FontSize="36" FontFamily="Arciform Sans" Height="72" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="comboBox_SelectCity" HorizontalAlignment="Left" VerticalAlignment="Center" Width="205" Height="48"  Style="{DynamicResource ComboBoxFlatStyle}" ItemsSource="{Binding CityList}" SelectedValue="{Binding CurrentCity}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </WrapPanel>
 
     </Grid>
