@@ -4,9 +4,105 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherFC"
+        xmlns:conv="clr-namespace:WeatherFC.Converters"
+        xmlns:p="clr-namespace:WeatherFC.Properties"
+        xmlns:ex="clr-namespace:WeatherFC.HelperClasses"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WeatherFC" Height="750" Width="1300" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF3A3A3A" MinWidth="700" MinHeight="500" ResizeMode="NoResize" Icon="pack://siteoforigin:,,,/Resources/favicon.png">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WeatherFC;component/Styles/flatcb.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:TemperatureConverter x:Key="TemperatureConverter"/>
+            <conv:AnimationConverter x:Key="AnimationConverter"/>
+            <conv:PressureConverter x:Key="PressureConverter"/>
+            <conv:WindSpeedConverter x:Key="WindSpeedConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image_weather_anim" Grid.Column="0" Grid.Row="1" ex:ImageBehavior.AnimatedSource="{Binding Path=ActualData.currently.icon, Converter={StaticResource AnimationConverter}}" Stretch="Fill" Margin="3,0,3,3"/>
+        <Rectangle Fill="#4C000000" HorizontalAlignment="Left" Height="517" Margin="10,26,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="280" StrokeThickness="0"/>
+        <Label x:Name="label_CurrentCity" Content="{Binding Path=CurrentCity}" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="48" Foreground="White" Height="74" Width="280" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arciform Sans"/>
+        <Image x:Name="image_Logo" Grid.Column="0" HorizontalAlignment="Left" Height="100" Margin="26,21,0,0" VerticalAlignment="Top" Width="225" Source="pack://siteoforigin:,,,/Resources/weather_fc_logo.png"/>
+        <Line X1="300" Y1="0" X2="300" Y2="7500" Stroke="Black" StrokeThickness="4" Margin="0,0,0,-3" Grid.RowSpan="2"/>
+        <Line X1="0" Y1="150" X2="1300" Y2="150" Stroke="Black" StrokeThickness="4" Grid.ColumnSpan="2" Margin="0,0,-5,0"/>
+        <Image x:Name="image_Quit" Grid.Column="1" Margin="952,-50,-47,103" RenderTransformOrigin="0.5,0.5" ex:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/Resources/exit.png" Height="97" VerticalAlignment="Bottom" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.237"/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform X="0.091" Y="0.091"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding QuitApplicationCommand, Mode=OneTime}" />
+            </Image.InputBindings>
+        </Image>
+        <Label x:Name="label_CurrentTemp" Content="{Binding Path=ActualData.currently.temperature, Converter={StaticResource TemperatureConverter}}" HorizontalAlignment="Left" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="48" Height="79" Width="280" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arciform Sans"/>
+        <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="600" Grid.Row="1" VerticalAlignment="Top" Width="1000">
+            <ListBox x:Name="listBox" Height="600" Width="1000" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemTemplate="{DynamicResource ForecastTemplate}" ItemsSource="{Binding Path=Forecast}" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Label x:Name="label" Content="{x:Static p:Resources.ErrorMsg}" Visibility="{Binding Path=ErrorMsg}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="222" Width="980" Height="48" Foreground="#FFBB0000" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="/WeatherFC;component/Resources/#Arciform Sans" UseLayoutRounding="True"/>
+        </Canvas>
+        <Image x:Name="image_lang_uk" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="875,112,0,0" VerticalAlignment="Top" Width="40" Source="pack://siteoforigin:,,,/Resources/uk_flag.png">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ChangeLanguageCommand, Mode=OneTime}" CommandParameter="en-GB"/>
+            </Image.InputBindings>
+        </Image>
+        <Image x:Name="img_lang_hu" Grid.Column="1" Margin="932,112,28,18" Source="pack://siteoforigin:,,,/Resources/hu_flag.png" Stretch="Fill" Width="40" Height="20">
+            <Image.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{Binding ChangeLanguageCommand, Mode=OneTime}" CommandParameter="hu-HU"/>
+            </Image.InputBindings>
+        </Image>
+        <Grid HorizontalAlignment="Left" Height="398" Margin="10,184,0,0" Grid.Row="1" VerticalAlignment="Top" Width="280">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="66*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label_CurrentWindSpeed" Content="{x:Static p:Resources.WindSpeed}" FontSize="20" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Height="46" Width="119" Margin="0,10,0,0" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrentAppTemp" Content="{x:Static p:Resources.AppTemp}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="64" Width="119" FontFamily="/WeatherFC;component/Resources/#Arciform Sans"/>
+            <Label x:Name="label_CurrentAtmPressure" Content="{x:Static p:Resources.AtmPressure}" FontSize="20" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Foreground="White" Height="66" Width="119" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrentHumidity" Content="{x:Static p:Resources.Humidity}" FontSize="20" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Foreground="White" Height="44" Width="119" Margin="0,13,0,0" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrentUV" Content="{x:Static p:Resources.UvIndex}" FontSize="20" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Foreground="White" Height="44" Width="119" Margin="0,10,0,0" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrVal_AppTemp" Content="{Binding Path=ActualData.currently.apparentTemperature, Converter={StaticResource TemperatureConverter}}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="140" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrVal_Wind" Content="{Binding Path=ActualData.currently.windSpeed, Converter={StaticResource WindSpeedConverter}}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="140" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="1" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrVal_AtmPressure" Content="{Binding Path=ActualData.currently.pressure, Converter={StaticResource PressureConverter}}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="140" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="2" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrVal_Humidity" Content="{Binding Path=ActualData.currently.humidity}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="46" Width="140" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="3" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_CurrVal_UV" Content="{Binding Path=ActualData.currently.uvIndex}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Height="46" Width="140" Foreground="#FF00F3FF" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Row="4" FontFamily="Arciform Sans"/>
+        </Grid>
+        <Label x:Name="label_darksky" Content="Powered by DarkSky" HorizontalAlignment="Left" Margin="175,126,0,0" VerticalAlignment="Top" Height="24" Width="134" Foreground="White" FontFamily="/WeatherFC;component/Resources/#Arciform Sans" Grid.ColumnSpan="2"/>
+        <WrapPanel Grid.Column="1" HorizontalAlignment="Left" Height="53" Margin="10,10,0,0" VerticalAlignment="Top" Width="316">
+            <Label x:Name="label_Year" Content="{Binding CurrentYear}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_Month" Content="{Binding CurrentMonth}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
+            <Label x:Name="label_Day" Content="{Binding CurrentDay}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Background="{x:Null}" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Arciform Sans"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1" HorizontalAlignment="Left" Height="72" Margin="14,68,0,0" VerticalAlignment="Top" Width="528">
+            <Label x:Name="label_SelectCity" Content="{x:Static p:Resources.SelectCity}" HorizontalAlignment="Center" Foreground="White" FontSize="36" FontFamily="Arciform Sans" Height="72" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="comboBox_SelectCity" HorizontalAlignment="Left" VerticalAlignment="Center" Width="205" Height="48"  Style="{DynamicResource ComboBoxFlatStyle}" ItemsSource="{Binding CityList}" SelectedValue="{Binding CurrentCity}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </WrapPanel>
+
     </Grid>
 </Window>

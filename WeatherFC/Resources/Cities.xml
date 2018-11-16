@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Cities>
+  <add name="Budapest" location="47.497912,19.040235"/>
+  <add name="Prague" location="50.075538,14.437800"/>
+  <add name="Luxembourg" location="49.815273,6.129583"/>
+  <add name="Debrecen" location="47.531605,21.627312"/>
+  <add name="Pecs" location="46.072735,18.232266"/>
+  <add name="Wienna" location="48.208174,16.373819"/>
+  <add name="Munich" location="48.135125,11.581981"/>
+  <add name="Amsterdam" location="52.370216,4.895168"/>
+</Cities>
