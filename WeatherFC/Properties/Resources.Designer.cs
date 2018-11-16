@@ -81,6 +81,16 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Atmospheric
+        ///pressure:.
+        /// </summary>
+        public static string AtmPressure {
+            get {
+                return ResourceManager.GetString("AtmPressure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap cloudy_anim {
@@ -97,6 +107,15 @@ namespace WeatherFC.Properties {
             get {
                 object obj = ResourceManager.GetObject("cloudynight_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Sky services are currently unavailable..
+        /// </summary>
+        public static string ErrorMsg {
+            get {
+                return ResourceManager.GetString("ErrorMsg", resourceCulture);
             }
         }
         
@@ -141,6 +160,15 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Humidity:.
+        /// </summary>
+        public static string Humidity {
+            get {
+                return ResourceManager.GetString("Humidity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap lightcloud_anim {
@@ -167,6 +195,15 @@ namespace WeatherFC.Properties {
             get {
                 object obj = ResourceManager.GetObject("rain_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select city to view:.
+        /// </summary>
+        public static string SelectCity {
+            get {
+                return ResourceManager.GetString("SelectCity", resourceCulture);
             }
         }
         
@@ -211,12 +248,30 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UV Index:.
+        /// </summary>
+        public static string UvIndex {
+            get {
+                return ResourceManager.GetString("UvIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap weather_fc_logo {
             get {
                 object obj = ResourceManager.GetObject("weather_fc_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wind speed:.
+        /// </summary>
+        public static string WindSpeed {
+            get {
+                return ResourceManager.GetString("WindSpeed", resourceCulture);
             }
         }
         

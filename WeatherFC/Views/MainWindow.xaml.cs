@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using WeatherFC.Views;
 
 namespace WeatherFC
 {
@@ -28,6 +31,9 @@ namespace WeatherFC
         {
             try
             {
+                InitializeSettingsFile();
+                SetLanguage();
+
                 InitializeComponent();
                 this.DataContext = ViewModels.MainWindowVM.Get();
             }
@@ -38,9 +44,25 @@ namespace WeatherFC
             }      
         }
 
+        void SetLanguage()
+        {
+            var xdoc = XDocument.Load("settings.xml");
+            var langElement = xdoc.Root.Elements("Language").First();
+
+            string language = langElement.FirstAttribute.Value.ToString();
+
+            CultureInfo ci = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
         void InitializeSettingsFile()
         {
-            if(!File.Exists()
+            if(!File.Exists("settings.xml"))
+            {
+                var sw = new SettingsWindow();
+                sw.ShowDialog();
+            }
         }
     }
 }

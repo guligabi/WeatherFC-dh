@@ -170,4 +170,23 @@
     <value>Apparent
 temperature:</value>
   </data>
+  <data name="AtmPressure" xml:space="preserve">
+    <value>Atmospheric
+pressure:</value>
+  </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>Dark Sky services are currently unavailable.</value>
+  </data>
+  <data name="Humidity" xml:space="preserve">
+    <value>Humidity:</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Select city to view:</value>
+  </data>
+  <data name="UvIndex" xml:space="preserve">
+    <value>UV Index:</value>
+  </data>
+  <data name="WindSpeed" xml:space="preserve">
+    <value>Wind speed:</value>
+  </data>
 </root>

@@ -170,4 +170,22 @@
     <value>Érezhető
 hőmérséklet:</value>
   </data>
+  <data name="AtmPressure" xml:space="preserve">
+    <value>Légnyomás:</value>
+  </data>
+  <data name="ErrorMsg" xml:space="preserve">
+    <value>A Dark Sky szolgáltatása jelenleg nem elérhető.</value>
+  </data>
+  <data name="Humidity" xml:space="preserve">
+    <value>Páratartalom:</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Válassz várost:</value>
+  </data>
+  <data name="UvIndex" xml:space="preserve">
+    <value>UV Index:</value>
+  </data>
+  <data name="WindSpeed" xml:space="preserve">
+    <value>Szélerősség:</value>
+  </data>
 </root>

@@ -12,6 +12,8 @@ using WeatherFC.Models;
 using System.Windows.Interactivity;
 using System.Globalization;
 using System.Threading;
+using System.Xml.Linq;
+using System.IO;
 
 namespace WeatherFC.ViewModels
 {
@@ -20,7 +22,7 @@ namespace WeatherFC.ViewModels
         WeatherData actualData;
         string currentCity;
         string currentLanguage;
-        string errorMsg;
+        Visibility errorMsg;
         ObservableCollection<ForecastData> forecast;
         ObservableCollection<string> cityList;
         string language;
@@ -42,10 +44,10 @@ namespace WeatherFC.ViewModels
 
         public string CurrentCity { get { return currentCity; } set { currentCity = value; OnPropertyChange("CurrentCity"); GetWeatherData(null); } }
         public string CurrentLanguage { get { return currentLanguage; } set { currentLanguage = value; OnPropertyChange("CurrentLanguage"); } }
-        public WeatherData ActualData { get { return actualData; } set { actualData = value; OnPropertyChange("ActualData"); ErrorMsg = ""; } }
+        public WeatherData ActualData { get { return actualData; } set { actualData = value; OnPropertyChange("ActualData"); ErrorMsg = Visibility.Hidden; } }
         public ObservableCollection<ForecastData> Forecast { get { return forecast; } set { forecast = value; OnPropertyChange("Forecast"); } }
         public ObservableCollection<string> CityList { get { return cityList; } set { cityList = value; OnPropertyChange("CityList"); } }
-        public string ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChange("ErrorMsg"); } }
+        public Visibility ErrorMsg { get { return errorMsg; } set { errorMsg = value; OnPropertyChange("ErrorMsg"); } }
         public DateTime CurrentDate { get { return currentDate; } set { currentDate = value; OnPropertyChange("CurrentDate"); MapDateToProperties(); } }
         public string CurrentDay { get { return currentDay; } set { currentDay = value; OnPropertyChange("CurrentDay"); } }
         public string CurrentMonth { get { return currentMonth; } set { currentMonth = value; OnPropertyChange("CurrentMonth"); } }
@@ -120,7 +122,7 @@ namespace WeatherFC.ViewModels
                 }
             }
             else
-            { ErrorMsg = "Connection to DarkSky services failed."; }
+            { ErrorMsg = Visibility.Visible; }
         }
 
         void QuitApplication(object parameter)
@@ -130,15 +132,16 @@ namespace WeatherFC.ViewModels
 
         void ChangeLanguage(object parameter)
         {
-            CultureInfo ci = new CultureInfo(parameter.ToString());
-            Thread.CurrentThread.CurrentCulture = ci;
-            Thread.CurrentThread.CurrentUICulture = ci;
+            if (File.Exists("settings.xml"))
+            {
+                var doc = XDocument.Load("settings.xml");
+                var lang = doc.Root.Element("Language").FirstAttribute.Value = parameter.ToString();
 
-            FrameworkContentElement.LanguageProperty.OverrideMetadata(
-              typeof(System.Windows.Documents.TextElement),
-              new FrameworkPropertyMetadata(parameter.ToString())
-            );
-            //Language = parameter.ToString();
+
+                doc.Save("settings.xml");
+
+                MessageBox.Show("You need to restart the application for the changes to take effect.");
+            }
         }
     }
 }

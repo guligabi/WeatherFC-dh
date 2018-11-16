@@ -20,8 +20,9 @@ namespace WeatherFC.HelperClasses
             { throw new FileNotFoundException("The file could not be found at the specified location! User key retrieval failed!"); }
             else
             {
-                StreamReader sr = new StreamReader(path);
-                var key = sr.ReadLine();
+                var xdoc = XDocument.Load(path);
+                var keyElement = xdoc.Root.Elements("Key").First();
+                string key = keyElement.FirstAttribute.Value.ToString();
                 return key;
             }
         }
@@ -69,7 +70,7 @@ namespace WeatherFC.HelperClasses
             string uri = "";
             try
             {
-                var key = GetUserKey("placeholder.txt");
+                var key = GetUserKey("settings.xml");
                 var cities = GetCities("cities.xml");
                 string location = cities[city];
                 uri = BuildRequestUrl(key, location, language, units);
