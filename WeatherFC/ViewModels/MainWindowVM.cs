@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using WeatherFC.HelperClasses;
 using WeatherFC.Models;
-using System.Windows.Interactivity;
-using System.Globalization;
-using System.Threading;
 using System.Xml.Linq;
 using System.IO;
 
