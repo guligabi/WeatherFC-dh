@@ -167,26 +167,25 @@
     <value>..\Resources\windy_anim.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AppTemp" xml:space="preserve">
-    <value>Apparent
-temperature:</value>
+    <value>Érezhető
+hőmérséklet:</value>
   </data>
   <data name="AtmPressure" xml:space="preserve">
-    <value>Atmospheric
-pressure:</value>
+    <value>Légnyomás:</value>
   </data>
   <data name="ErrorMsg" xml:space="preserve">
-    <value>Dark Sky services are currently unavailable.</value>
+    <value>A Dark Sky szolgáltatása jelenleg nem elérhető.</value>
   </data>
   <data name="Humidity" xml:space="preserve">
-    <value>Humidity:</value>
+    <value>Páratartalom:</value>
   </data>
   <data name="SelectCity" xml:space="preserve">
-    <value>Select city to view:</value>
+    <value>Válassz várost:</value>
   </data>
   <data name="UvIndex" xml:space="preserve">
     <value>UV Index:</value>
   </data>
   <data name="WindSpeed" xml:space="preserve">
-    <value>Wind speed:</value>
+    <value>Szélerősség:</value>
   </data>
 </root>

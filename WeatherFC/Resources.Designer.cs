@@ -22,7 +22,7 @@ namespace WeatherFC.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace WeatherFC.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeatherFC.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace WeatherFC.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,10 +61,9 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apparent
-        ///temperature:.
+        ///   Looks up a localized string similar to Apparent Temperature:.
         /// </summary>
-        public static string AppTemp {
+        internal static string AppTemp {
             get {
                 return ResourceManager.GetString("AppTemp", resourceCulture);
             }
@@ -73,7 +72,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] Arciform {
+        internal static byte[] Arciform {
             get {
                 object obj = ResourceManager.GetObject("Arciform", resourceCulture);
                 return ((byte[])(obj));
@@ -81,10 +80,9 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Atmospheric
-        ///pressure:.
+        ///   Looks up a localized string similar to Atmospheric&amp;#xD;&amp;#xA;pressure:.
         /// </summary>
-        public static string AtmPressure {
+        internal static string AtmPressure {
             get {
                 return ResourceManager.GetString("AtmPressure", resourceCulture);
             }
@@ -93,7 +91,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap cloudy_anim {
+        internal static System.Drawing.Bitmap cloudy_anim {
             get {
                 object obj = ResourceManager.GetObject("cloudy_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +101,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap cloudynight_anim {
+        internal static System.Drawing.Bitmap cloudynight_anim {
             get {
                 object obj = ResourceManager.GetObject("cloudynight_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -111,9 +109,9 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark Sky services are currently unavailable..
+        ///   Looks up a localized string similar to Connection to Dark Sky services failed..
         /// </summary>
-        public static string ErrorMsg {
+        internal static string ErrorMsg {
             get {
                 return ResourceManager.GetString("ErrorMsg", resourceCulture);
             }
@@ -122,7 +120,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap exit {
+        internal static System.Drawing.Bitmap exit {
             get {
                 object obj = ResourceManager.GetObject("exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -132,7 +130,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap favicon {
+        internal static System.Drawing.Bitmap favicon {
             get {
                 object obj = ResourceManager.GetObject("favicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -142,7 +140,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap fog_anim {
+        internal static System.Drawing.Bitmap fog_anim {
             get {
                 object obj = ResourceManager.GetObject("fog_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -152,7 +150,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap hu_flag {
+        internal static System.Drawing.Bitmap hu_flag {
             get {
                 object obj = ResourceManager.GetObject("hu_flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -162,7 +160,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Humidity:.
         /// </summary>
-        public static string Humidity {
+        internal static string Humidity {
             get {
                 return ResourceManager.GetString("Humidity", resourceCulture);
             }
@@ -171,7 +169,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap lightcloud_anim {
+        internal static System.Drawing.Bitmap lightcloud_anim {
             get {
                 object obj = ResourceManager.GetObject("lightcloud_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -181,7 +179,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap night_anim {
+        internal static System.Drawing.Bitmap night_anim {
             get {
                 object obj = ResourceManager.GetObject("night_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -191,7 +189,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap rain_anim {
+        internal static System.Drawing.Bitmap rain_anim {
             get {
                 object obj = ResourceManager.GetObject("rain_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -201,7 +199,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select city to view:.
         /// </summary>
-        public static string SelectCity {
+        internal static string SelectCity {
             get {
                 return ResourceManager.GetString("SelectCity", resourceCulture);
             }
@@ -210,7 +208,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap snow_anim {
+        internal static System.Drawing.Bitmap snow_anim {
             get {
                 object obj = ResourceManager.GetObject("snow_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -220,7 +218,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap storm_anim {
+        internal static System.Drawing.Bitmap storm_anim {
             get {
                 object obj = ResourceManager.GetObject("storm_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -230,7 +228,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap sunny_anim {
+        internal static System.Drawing.Bitmap sunny_anim {
             get {
                 object obj = ResourceManager.GetObject("sunny_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -240,7 +238,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap uk_flag {
+        internal static System.Drawing.Bitmap uk_flag {
             get {
                 object obj = ResourceManager.GetObject("uk_flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -250,7 +248,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to UV Index:.
         /// </summary>
-        public static string UvIndex {
+        internal static string UvIndex {
             get {
                 return ResourceManager.GetString("UvIndex", resourceCulture);
             }
@@ -259,7 +257,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap weather_fc_logo {
+        internal static System.Drawing.Bitmap weather_fc_logo {
             get {
                 object obj = ResourceManager.GetObject("weather_fc_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -269,7 +267,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Wind speed:.
         /// </summary>
-        public static string WindSpeed {
+        internal static string WindSpeed {
             get {
                 return ResourceManager.GetString("WindSpeed", resourceCulture);
             }
@@ -278,7 +276,7 @@ namespace WeatherFC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap windy_anim {
+        internal static System.Drawing.Bitmap windy_anim {
             get {
                 object obj = ResourceManager.GetObject("windy_anim", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
