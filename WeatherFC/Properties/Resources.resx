@@ -189,4 +189,7 @@ pressure:</value>
   <data name="WindSpeed" xml:space="preserve">
     <value>Wind speed:</value>
   </data>
+  <data name="Cities" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cities.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1250</value>
+  </data>
 </root>

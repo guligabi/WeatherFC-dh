@@ -102,7 +102,7 @@ namespace WeatherFC.ViewModels
 
         void UpdateCities(object parameter)
         {
-            var cities = DarkSkyWrapper.GetCities("cities.xml");
+            var cities = DarkSkyWrapper.GetCities();
 
             foreach (KeyValuePair<string, string> c in cities)
             {

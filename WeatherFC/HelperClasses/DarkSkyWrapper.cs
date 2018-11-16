@@ -50,18 +50,14 @@ namespace WeatherFC.HelperClasses
             return sb.ToString();
         }
 
-        public static Dictionary<string, string> GetCities(string path)
+        public static Dictionary<string, string> GetCities()
         {
-            if (!File.Exists(path))
-            { throw new FileNotFoundException("The file could not be found at the specified location! City locations retrieval failed!"); }
-            else
-            {
-                var xdoc = XDocument.Load(path);
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var xdoc = XDocument.Load(assembly.GetManifestResourceStream("WeatherFC.Resources.Cities.xml"));
                 var dictionary = xdoc.Root.Elements()
                                    .ToDictionary(a => (string)a.Attribute("name"),
                                                  a => (string)a.Attribute("location"));
                 return dictionary;
-            }
 
         }
 
@@ -71,7 +67,7 @@ namespace WeatherFC.HelperClasses
             try
             {
                 var key = GetUserKey("settings.xml");
-                var cities = GetCities("cities.xml");
+                var cities = GetCities();
                 string location = cities[city];
                 uri = BuildRequestUrl(key, location, language, units);
             }

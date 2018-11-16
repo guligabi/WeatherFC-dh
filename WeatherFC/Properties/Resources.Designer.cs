@@ -91,6 +91,25 @@ namespace WeatherFC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Cities&gt;
+        ///  &lt;add name=&quot;Budapest&quot; location=&quot;47.497912,19.040235&quot;/&gt;
+        ///  &lt;add name=&quot;Prague&quot; location=&quot;50.075538,14.437800&quot;/&gt;
+        ///  &lt;add name=&quot;Luxembourg&quot; location=&quot;49.815273,6.129583&quot;/&gt;
+        ///  &lt;add name=&quot;Debrecen&quot; location=&quot;47.531605,21.627312&quot;/&gt;
+        ///  &lt;add name=&quot;Pecs&quot; location=&quot;46.072735,18.232266&quot;/&gt;
+        ///  &lt;add name=&quot;Wienna&quot; location=&quot;48.208174,16.373819&quot;/&gt;
+        ///  &lt;add name=&quot;Munich&quot; location=&quot;48.135125,11.581981&quot;/&gt;
+        ///  &lt;add name=&quot;Amsterdam&quot; location=&quot;52.370216,4.895168&quot;/&gt;
+        ///&lt;/Cities&gt;.
+        /// </summary>
+        public static string Cities {
+            get {
+                return ResourceManager.GetString("Cities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap cloudy_anim {
