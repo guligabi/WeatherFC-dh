@@ -204,7 +204,7 @@ namespace WeatherFC.Models
         public int uvIndex { get; set; }
         public double visibility { get; set; }
         public double ozone { get; set; }
-        public int? precipAccumulation { get; set; }
+        public double? precipAccumulation { get; set; }
     }
 
     public class Hourly

@@ -100,7 +100,16 @@ namespace WeatherFC.HelperClasses
                 return null;
             }
 
-            var data = JsonConvert.DeserializeObject<WeatherData>(json);
+            WeatherData data = null;
+            try
+            {
+                data = JsonConvert.DeserializeObject<WeatherData>(json);
+            }
+            catch(JsonReaderException e)
+            {
+                MessageBox.Show("Data from the server appears to be corrupt. Try again later.");
+            }
+            
             return data;
         }
 
